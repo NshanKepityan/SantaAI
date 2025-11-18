@@ -34,9 +34,9 @@ import SectionHeaderHighliteLeft from "@/components/SectionHeaderHighliteLeft";
  * React + Tailwind single page with Mint Analyzer hooked to /api/analyze
  */
 
-const SANTA_MINT = "Coming SOON ....";
-const PUMP_FUN = "https://pump.fun/coin/";
-const DEX = "https://dexscreener.com/solana/";
+const SANTA_MINT = "DSH1SuyfiJyg6X8mvt8bAGi1z5iUakDa3ryVst4Lpump";
+const PUMP_FUN = "https://pump.fun/coin/DSH1SuyfiJyg6X8mvt8bAGi1z5iUakDa3ryVst4Lpump";
+const DEX = "https://dexscreener.com/solana/DSH1SuyfiJyg6X8mvt8bAGi1z5iUakDa3ryVst4Lpump";
 const TWITTER = "https://x.com/Santa_AI_sol";
 const TELLEGRAM = "https://t.me/santa_ai_sol";
 
