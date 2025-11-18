@@ -1,0 +1,21 @@
+{
+  "name": "SantaAI",
+  "short_name": "SantaAI",
+  "description": "AI-powered Solana mint analyzer with SantaScore.",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#D5004F",
+  "background_color": "#050014",
+  "display": "standalone",
+  "start_url": "/"
+}

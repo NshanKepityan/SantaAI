@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root { --bg: #0A0118; }
+html, body { height: 100%; 
+  background: radial-gradient(1200px 700px at 20% -10%, rgba(0,255,224,0.08), transparent),
+              radial-gradient(1200px 700px at 120% 10%, rgba(123,0,255,0.10), transparent),
+              #0A0118;
+  color: white;
+  overflow-x: hidden;   /* 👈 prevents the right-side gap */
+}
+
+::selection {
+  background: rgba(0,255,224,0.25);
+}
+html { font-size: clamp(15px, 1.25vw + 12px, 17px); }        /* default ~16px; start here */
+@media (min-width: 768px) { html { font-size: 16px; } }
+@media (min-width: 1280px) { html { font-size: 17px; } }
+
+* { box-sizing: border-box; }

@@ -51,7 +51,6 @@ export type AnalysisResult = {
   lockedLiquidityPct: number | null;
 
   // Risks / metrics
-  top1Share: number; // 0..1
   top10Share: number; // 0..1
   metadataMutable: boolean;
   customFeesDetected: boolean;
@@ -93,16 +92,11 @@ export async function analyzeMint(opts: AnalyzeOptions): Promise<AnalysisResult>
     const scored = computeRisksAndScore({
 	  creator: "Unknown", // not available from this API (kept for future)
 	  creationBlockTime: null,
-
 	  depthSOL: analysisData.depthSOL,
 	  lpAuthority: undefined, // we rely on lockedLiquidityPct instead
 	  lockProvider: analysisData.lpStatus === "locked" ? "GeckoTerminal" : null,
-
 	  lockedLiquidityPct: analysisData.lockedLiquidityPct ?? null,
-
-	  top1Share: analysisData.top1Share,
 	  top10Share: analysisData.top10Share,
-
 	  metadataMutable: analysisData.metadataMutable,
 	  customFeesDetected: analysisData.customFeesDetected,
 	});
@@ -114,8 +108,6 @@ export async function analyzeMint(opts: AnalyzeOptions): Promise<AnalysisResult>
       poolState: analysisData.poolState,
       depthSOL: analysisData.depthSOL,
       lockedLiquidityPct: analysisData.lockedLiquidityPct,
-
-      top1Share: analysisData.top1Share,
       top10Share: analysisData.top10Share,
       metadataMutable: analysisData.metadataMutable,
       customFeesDetected: analysisData.customFeesDetected,

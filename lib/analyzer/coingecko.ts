@@ -23,7 +23,10 @@ async function retryFetch(url: string, retries = 3): Promise<Response | null> {
     try {
       await rateLimitApi();
       const res = await fetch(url, {
-        headers: { accept: "application/json" },
+        headers: { 
+            "accept": "application/json", 
+            "x-cg-pro-api-key": "CG-mV8w9tVbmAd1rBpckWEHugND"
+        },
         cache: "no-store",
       });
 
@@ -128,7 +131,6 @@ export async function getPoolInfo(poolId: string): Promise<any | null> {
 
 /** Shape returned for analyzer/index.ts */
 export type ExtractedAnalysis = {
-  top1Share: number; // 0..1
   top10Share: number; // 0..1
   metadataMutable: boolean;
   customFeesDetected: boolean;
@@ -174,7 +176,6 @@ export async function extractAnalysisData(
   const poolAttrs: any = poolData?.data?.attributes ?? {};
 
   /* ---------- Holders / concentration (from /info) ---------- */
-  let top1Share = 0;
   let top10Share = 0;
 
   const holdersObj = infoAttrs.holders;
@@ -186,11 +187,6 @@ export async function extractAnalysisData(
       const top10Raw = toNum(dist.top_10 ?? dist.top10 ?? dist["top-10"]);
       if (top10Raw !== null) {
         top10Share = Math.max(0, Math.min(1, top10Raw / 100));
-      }
-
-      const top1Raw = toNum(dist.top_1 ?? dist.top1 ?? dist["top-1"]);
-      if (top1Raw !== null) {
-        top1Share = Math.max(0, Math.min(1, top1Raw / 100));
       }
     }
   }
@@ -282,7 +278,6 @@ export async function extractAnalysisData(
   }
 
   const result: ExtractedAnalysis = {
-    top1Share,
     top10Share,
     metadataMutable,
     customFeesDetected,

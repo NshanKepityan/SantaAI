@@ -11,7 +11,6 @@ type RiskInput = {
 
   lockedLiquidityPct: number | null; // 0..100 or null if unknown
 
-  top1Share: number;                 // 0..1
   top10Share: number;                // 0..1
 
   metadataMutable: boolean;
@@ -21,8 +20,6 @@ type RiskInput = {
 export function computeRisksAndScore(input: RiskInput) {
   // ---------------- Thresholds ----------------
   // Holder concentration
-  const THRESH_TOP1_WARN = 0.15;      // 15% - moderate
-  const THRESH_TOP1_BAD  = 0.30;      // 30% - high risk
 
   const THRESH_TOP10_WARN = 0.50;     // 50% - moderate
   const THRESH_TOP10_BAD  = 0.70;     // 70% - high risk
@@ -88,24 +85,9 @@ export function computeRisksAndScore(input: RiskInput) {
   }
 
   // ---------------- Holder concentration ----------------
-  const top1Pct = Math.round(input.top1Share * 100);
   const top10Pct = Math.round(input.top10Share * 100);
 
-  let top1Penalty = 0;
   let top10Penalty = 0;
-
-  // Top 1 wallet
-  if (input.top1Share >= THRESH_TOP1_BAD) {
-    top1Penalty = -30;
-    warnings.push(
-      `Private wallet holds ${top1Pct}% of supply (high rug risk / heavy centralization).`,
-    );
-  } else if (input.top1Share >= THRESH_TOP1_WARN) {
-    top1Penalty = -15;
-    warnings.push(
-      `Private wallet holds ${top1Pct}% of supply (moderate centralization risk).`,
-    );
-  }
 
   // Top 10 wallets
   if (input.top10Share >= THRESH_TOP10_BAD) {
@@ -150,7 +132,6 @@ export function computeRisksAndScore(input: RiskInput) {
       tradingScore +
       creatorScore +
       feePenalty +
-      top1Penalty +
       top10Penalty +
       mutPenalty,
     0,
@@ -165,7 +146,7 @@ export function computeRisksAndScore(input: RiskInput) {
       creator: creatorScore,                  // reserved for future reputation data
       tax: feePenalty,                        // custom fee / honeypot penalty
       trading: tradingScore,                  // liquidity depth
-      warnings: top1Penalty + top10Penalty + mutPenalty, // concentration + metadata
+      warnings: top10Penalty + mutPenalty, // concentration + metadata
     },
   };
 }
