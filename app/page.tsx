@@ -34,11 +34,10 @@ import SectionHeaderHighliteLeft from "@/components/SectionHeaderHighliteLeft";
  * React + Tailwind single page with Mint Analyzer hooked to /api/analyze
  */
 
-const SANTA_MINT = "DSH1SuyfiJyg6X8mvt8bAGi1z5iUakDa3ryVst4Lpump";
-const PUMP_FUN = "https://pump.fun/coin/DSH1SuyfiJyg6X8mvt8bAGi1z5iUakDa3ryVst4Lpump";
-const DEX = "https://dexscreener.com/solana/DSH1SuyfiJyg6X8mvt8bAGi1z5iUakDa3ryVst4Lpump";
+const SANTA_MINT = "EEAJy2y48DVMHxXp2ej9bpaLNPYgTL8yT4xxttRkpump";
+const PUMP_FUN = "https://pump.fun/coin/EEAJy2y48DVMHxXp2ej9bpaLNPYgTL8yT4xxttRkpump";
+const DEX = "https://dexscreener.com/solana/EEAJy2y48DVMHxXp2ej9bpaLNPYgTL8yT4xxttRkpump";
 const TWITTER = "https://x.com/Santa_AI_sol";
-const TELLEGRAM = "https://t.me/santa_ai_sol";
 
 export default function Page() {
   return <SantaAISite />;
@@ -236,13 +235,6 @@ function SantaAISite() {
 			  DexScreener
 			</a>
 
-			<a
-			  href={TELLEGRAM}
-			  target="_blank"
-			  className="px-5 py-2.5 rounded-2xl font-medium bg-white/10 hover:bg-white/20 border border-white/10"
-			>			  
-            <Send className="h-8 w-8" />
-			</a>
 			
 			<a
             href={TWITTER}
@@ -619,15 +611,6 @@ function SantaAISite() {
             <span>Follow X</span>
           </a>
 
-          <a
-            href={TELLEGRAM}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-semibold text-black shadow-lg shadow-cyan-500/30 hover:-translate-y-0.5 transition transform"
-          >
-            <Send className="h-8 w-8" />
-            <span>Join Telegram</span>
-          </a>
         </div>
       </div>
     </div>
